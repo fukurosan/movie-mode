@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('./header.ejs') %>
+
+    <div class="container mt-5">
+        <div class="text-center">
+            <h2 class="mb-4">Search Result</h2>
+            <div class="row mb-5" id="search-result-container">
+
+                <% for ( let index in searchResult ) { %>
+                <div class="col-md-4 mb-5">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="<%- searchResult[index].giphyUrl %>" class="card-img">
+                        </div>
+                        <ul class="social-icon">
+                            <li><a href="https://www.imdb.com/title/<%- searchResult[index].id %>/" target="_blank"><i class="fa fa-imdb" aria-hidden="true"></i></a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/<%- searchResult[index].title %>" target="_blank"><i class="fa fa-wikipedia-w" aria-hidden="true"></i></a></li>
+                            <li><a href="https://www.youtube.com/results?search_query=<%- searchResult[index].title %> trailer" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                        </ul>
+                        <div class="details">
+                            <h2><%- searchResult[index].title %></h2>
+                            <span><%- searchResult[index].year %></span>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

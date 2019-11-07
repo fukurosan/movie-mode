@@ -1,0 +1,36 @@
+version: '3'
+services:
+  postgresql-movie-db:
+    build:
+      dockerfile: Dockerfile
+      context: ./movie-db
+    networks:
+      - backend
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=movie-db
+  movie-node-app:
+    build:
+      dockerfile: Dockerfile
+      context: ./node-app
+    networks:
+      - backend
+    restart: always
+    volumes:
+      - ./node-app:/app
+      - /app/node_modules
+    ports:
+      - '8080:8080'
+    depends_on: 
+      - postgresql-movie-db
+    environment:
+      - MOVIE_DB_HOST=postgresql-movie-db
+      - MOVIE_DB_PORT=5432
+      - MOVIE_DB_NAME=movie-db
+      - MOVIE_DB_USERNAME=postgres
+      - MOVIE_DB_PASSWORD=1234
+      - GIPHY_API_KEY=YOUR_API_KEY_GOES_HERE
+      - PORT=8080
+networks:
+  backend:

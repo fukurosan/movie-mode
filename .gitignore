@@ -1,0 +1,11 @@
+# misc
+.DS_Store
+.vscode
+node-app/node_modules
+movie-db/name.basics.fixed.tsv
+movie-db/title.akas.fixed.tsv
+movie-db/title.basics.fixed.tsv
+movie-db/title.crew.fixed.tsv
+movie-db/title.episode.fixed.tsv
+movie-db/title.principals.fixed.tsv
+movie-db/title.ratings.fixed.tsv

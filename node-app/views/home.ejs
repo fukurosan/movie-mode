@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('./header.ejs') %>
+
+    <div class="container mt-5 mb-5">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="mb-4">Search</h2>
+                <form method="POST" action="/search">
+
+                    <h5 class="search-card-header">Type of Media</h5>
+                    <div class="input-group mb-4">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="MovieRadioBtn" name="contentType" class="custom-control-input" value="Movies"
+                                required>
+                            <label class="custom-control-label" for="MovieRadioBtn">Movies</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="SeriesRadioBtn" name="contentType" class="custom-control-input" value="Series"
+                                required>
+                            <label class="custom-control-label" for="SeriesRadioBtn">Series</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="SeriesAndMovieRadioBtn" name="contentType" value="Both"
+                                class="custom-control-input" required>
+                            <label class="custom-control-label" for="SeriesAndMovieRadioBtn">Both</label>
+                        </div>
+                    </div>
+
+                    <h5 class="search-card-header">Genre(s)</h5>
+                    <div class="input-group mb-4">
+                        <% for ( let index in genres ) { %>
+                        <div class="custom-control custom-switch col-md-4">
+                            <input type="checkbox" class="custom-control-input" id="genreCheck<%- genres[index] %>" name="genre[]" value="<%- genres[index] %>">
+                            <label class="custom-control-label"
+                                for="genreCheck<%- genres[index] %>"><%- genres[index] %></label>
+                        </div>
+                        <% } %>
+                    </div>
+
+                    <h5 class="search-card-header">Years</h5>
+                    <div class="form-row w-100 mb-4">
+                        <div class="col-md-6 mb-3 p-0">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">From</span>
+                                </div>
+                                <input type="number" class="form-control" id="FromYear" placeholder="From Year"
+                                    value="1990" name="fromYear">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3 p-0">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">To</span>
+                                </div>
+                                <input type="number" class="form-control" id="ToYear" placeholder="To Year"
+                                    value="2019" name="toYear">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="search-card-header">Minimum IMDB Rating</h5>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="minimumIMDBRating" step="0.1" value="5" max="10" min="0" name="minimumRating">
+                    </div>
+
+                    <button id="search-btn" action="submit">Search</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
